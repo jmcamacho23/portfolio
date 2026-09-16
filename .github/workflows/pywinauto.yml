@@ -8,7 +8,7 @@ on:
   workflow_dispatch: 
 jobs:
   ui-tests:
-    runs-on: windows-latest
+    runs-on: self-hosted
 
     steps:
     - name: Checkout repository
@@ -25,14 +25,10 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.txt
 
-    # 2. Crucial Step: Use a helper to force an interactive/GUI session.
-    # This prevents the Windows runner from hiding the GUI layer.
-    - name: Run PyWinAuto Tests in Interactive Session
-      uses: bitovi/github-actions-storybook-to-ghpages@v1
-      with:
-        run: |
-          pytest tests/win --headed --junit-xml=reports/windows-report.xml -o junit_logging=all
-        if: always() 
+    - name: Run PyWinAuto Tests
+      run: |
+        pytest tests/win --headed --junit-xml=reports/windows-report.xml -o junit_logging=all
+      if: always() 
 
     - name: Upload Windows Test Report XML
       uses: actions/upload-artifact@v4
