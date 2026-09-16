@@ -1,4 +1,8 @@
-from support import random_generator as rg
+"""
+Desktop application tests using Pywinauto and Pytest
+Application: Calculator (Windows)
+Author: Jose Camacho
+"""
 from support import utils, paths
 from pywinauto import mouse as m, keyboard as k, Application  # for Windows desktop app interaction
 from pywinauto import Desktop

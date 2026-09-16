@@ -1,3 +1,9 @@
+"""
+Desktop application tests using Pywinauto and Pytest
+Application: Calculator (Windows)
+Author: Jose Camacho
+"""
+
 import pytest
 from helpers.winapp_helper import CalculatorPage
 
