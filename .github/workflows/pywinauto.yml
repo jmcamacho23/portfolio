@@ -28,7 +28,7 @@ jobs:
     # 2. Crucial Step: Use a helper to force an interactive/GUI session.
     # This prevents the Windows runner from hiding the GUI layer.
     - name: Run PyWinAuto Tests in Interactive Session
-      uses: chribb/act-with-desktop@v1
+      uses: bitovi/github-actions-storybook-to-ghpages@v1
       with:
         run: |
           pytest tests/win --headed --junit-xml=reports/windows-report.xml -o junit_logging=all
