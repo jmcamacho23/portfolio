@@ -30,5 +30,3 @@ class CalculatorPage:
 
     def close(self):
         self.app.kill()
-
-
