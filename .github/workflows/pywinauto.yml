@@ -26,9 +26,11 @@ jobs:
         pip install pytest pywinauto
 
     - name: Run PyWinAuto Tests
+      shell: pwsh
       run: |
+        $env:PYTHONPATH = "$env:GITHUB_WORKSPACE\tests;$env:PYTHONPATH"
         pytest tests/win --junit-xml=reports/windows-report.xml -o junit_logging=all
-      if: always() 
+      if: always()
 
     - name: Upload Windows Test Report XML
       uses: actions/upload-artifact@v4
