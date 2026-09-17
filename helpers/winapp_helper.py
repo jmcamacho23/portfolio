@@ -4,8 +4,7 @@ Application: Calculator (Windows)
 Author: Jose Camacho
 """
 from support import utils, paths
-from pywinauto import mouse as m, keyboard as k, Application  # for Windows desktop app interaction
-from pywinauto import Desktop
+from pywinauto import mouse as m, keyboard as k, Application
 
 
 class CalculatorPage:
