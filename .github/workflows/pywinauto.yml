@@ -26,10 +26,13 @@ jobs:
         pip install pytest pywinauto
 
     - name: Run PyWinAuto Tests
-      shell: pwsh
+      shell: powershell
       run: |
+        New-Item -ItemType Directory -Force -Path reports | Out-Null
         $env:PYTHONPATH = "$env:GITHUB_WORKSPACE\tests;$env:PYTHONPATH"
-        pytest tests/win --junit-xml=reports/windows-report.xml -o junit_logging=all
+        pytest tests/win `
+          --junit-xml=reports/windows-report.xml `
+          -o junit_logging=all
       if: always()
 
     - name: Upload Windows Test Report XML
