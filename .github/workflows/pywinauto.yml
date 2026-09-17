@@ -1,0 +1,40 @@
+name: Run PyWinAuto Tests
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch: 
+jobs:
+  ui-tests:
+    runs-on: self-hosted
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.14'
+        cache: 'pip'
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install pytest pywinauto
+
+    - name: Run PyWinAuto Tests
+      run: |
+        pytest tests/win --junit-xml=reports/windows-report.xml -o junit_logging=all
+      if: always() 
+
+    - name: Upload Windows Test Report XML
+      uses: actions/upload-artifact@v4
+      if: always()
+      with:
+        name: windows-report-xml
+        path: reports/windows-report.xml
+
+        
