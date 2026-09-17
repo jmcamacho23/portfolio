@@ -27,7 +27,7 @@ jobs:
 
     - name: Run PyWinAuto Tests
       run: |
-        pytest tests/win --headed --junit-xml=reports/windows-report.xml -o junit_logging=all
+        pytest tests/win --junit-xml=reports/windows-report.xml -o junit_logging=all
       if: always() 
 
     - name: Upload Windows Test Report XML
@@ -35,6 +35,6 @@ jobs:
       if: always()
       with:
         name: windows-report-xml
-        path: report/windows-report.xml
+        path: reports/windows-report.xml
 
         
