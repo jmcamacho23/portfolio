@@ -7,7 +7,7 @@ on:
     branches: [ main ]
   workflow_dispatch: 
 jobs:
-  ui-tests:
+  pywinauto-ui-tests:
     runs-on: self-hosted
 
     steps:
@@ -25,10 +25,7 @@ jobs:
         pip install pytest pytest-asyncio requests pywinauto pywin32 comtypes
 
     - name: Run PyWinAuto Tests
-      shell: powershell
       run: |
-        New-Item -ItemType Directory -Force -Path reports | Out-Null
-        $env:PYTHONPATH = "$env:GITHUB_WORKSPACE\tests;$env:PYTHONPATH"
         pytest tests/win --junit-xml=reports/windows-report.xml -o junit_logging=all
       if: always()
 
