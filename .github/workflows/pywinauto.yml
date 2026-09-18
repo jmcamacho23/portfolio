@@ -19,9 +19,7 @@ jobs:
       with:
         python-version: '3.12'
 
-    - name: Install dependencies
-      run: |
-        pip install pytest pytest-asyncio requests pywinauto pywin32 comtypes
+
 
     - name: Run PyWinAuto Tests
       run: |
