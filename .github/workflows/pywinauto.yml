@@ -17,11 +17,11 @@ jobs:
     - name: Set up Python
       uses: actions/setup-python@v5
       with:
-        python-version: '3.12'
+        python-version: '3.11'
 
     - name: Install dependencies
       run: |
-        pip install pytest pytest-asyncio requests pywinauto pywin32 comtypes pytz win32ui
+        pip install pytest pytest-asyncio requests pywinauto pywin32 comtypes pytz
 
     - name: Run PyWinAuto Tests
       run: |
