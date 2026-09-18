@@ -21,7 +21,7 @@ jobs:
 
     - name: Install dependencies
       run: |
-        pip install pytest pytest-asyncio requests pywinauto pywin32 comtypes pytz
+        pip install pytest pytest-asyncio requests pywinauto pytz
 
     - name: Run PyWinAuto Tests
       run: |
