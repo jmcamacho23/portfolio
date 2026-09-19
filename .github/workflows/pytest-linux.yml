@@ -1,4 +1,4 @@
-name: Run Pytest Scaper Tests
+name: Pytest Scraper Tests
 
 on:
   push:
@@ -26,7 +26,7 @@ jobs:
     - name: Initialize Playwright
       run: playwright install --with-deps
 
-    - name: Run Pytest Tests in Linux (Ubuntu)
+    - name: Run Pytest Scraper Tests in Linux (Ubuntu)
       run: |
         pytest tests/scrapers --junit-xml=reports/scrapers-lin-report.xml -o junit_logging=all
       if: always()
