@@ -1,0 +1,41 @@
+name: Run Pytest Scaper Tests
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch: 
+jobs:
+  pytest-scraper-tests:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.14'
+
+    - name: Install dependencies
+      run: |
+        pip install pytest-playwright pytest-asyncio requests pytz
+
+    - name: Initialize Playwright
+      run: playwright install --with-deps
+
+    - name: Run Pytest Tests in Linux (Ubuntu)
+      run: |
+        pytest tests/scrapers --junit-xml=reports/scrapers-lin-report.xml -o junit_logging=all
+      if: always()
+
+    - name: Upload Scrapers Linux Test Report XML
+      uses: actions/upload-artifact@v4
+      if: always()
+      with:
+        name: scrapers-lin-report-xml
+        path: reports/scrapers-lin-report.xml
+
+        
