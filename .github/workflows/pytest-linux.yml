@@ -8,6 +8,9 @@ on:
   workflow_dispatch: 
 jobs:
   pytest-scraper-tests:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
 
     steps:
@@ -28,8 +31,24 @@ jobs:
 
     - name: Run Pytest Scraper Tests in Linux (Ubuntu)
       run: |
-        pytest tests/scrapers --junit-xml=reports/scrapers-lin-report.xml -o junit_logging=all
+        mkdir -p reports
+        pytest tests/scrapers --junit-xml=reports/scrapers-lin-report.xml -o junit_logging=all --html=reports/index.html --self-contained-html
       if: always()
+
+    - name: Setup Pages
+      if: always()
+      uses: actions/configure-pages@v5
+
+    - name: Upload Pages artifact
+      if: always()
+      uses: actions/upload-pages-artifact@v3
+      with:
+          path: 'reports'
+
+    - name: Deploy to GitHub Pages
+      if: always()
+      id: deployment
+      uses: actions/deploy-pages@v4
 
     - name: Upload Scrapers Linux Test Report XML
       uses: actions/upload-artifact@v4
