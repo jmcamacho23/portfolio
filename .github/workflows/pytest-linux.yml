@@ -31,19 +31,19 @@ jobs:
 
     - name: Run Pytest Scraper Tests in Linux (Ubuntu)
       run: |
-        mkdir -p reports
-        pytest tests/scrapers --junit-xml=reports/scrapers-lin-report.xml -o junit_logging=all --html=reports/index.html --self-contained-html
+        mkdir -p public
+        pytest tests/scrapers --junit-xml=reports/scrapers-lin-report.xml -o junit_logging=all --html=public/index.html --self-contained-html
       if: always()
 
     - name: Setup Pages
       if: always()
       uses: actions/configure-pages@v5
 
-    - name: Upload Pages artifact
+    - name: Upload Github Pages artifact
       if: always()
       uses: actions/upload-pages-artifact@v3
       with:
-          path: 'reports'
+          path: 'public'
 
     - name: Deploy to GitHub Pages
       if: always()
