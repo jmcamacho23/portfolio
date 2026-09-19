@@ -21,7 +21,7 @@ jobs:
 
     - name: Install dependencies
       run: |
-        pip install pytest-playwright pytest-asyncio requests pytz beautifulsoup4
+        pip install pytest-playwright playwright-stealth pytest-asyncio requests pytz beautifulsoup4
 
     - name: Initialize Playwright
       run: playwright install --with-deps
