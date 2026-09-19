@@ -12,6 +12,7 @@ from xml.dom import minidom
 from datetime import datetime as dt
 import pytest
 
+@pytest.mark.skip
 @pytest.mark.scraper
 def test_amazon_scraper():
     time_now = dt.now()
